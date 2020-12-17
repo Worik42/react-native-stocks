@@ -1,0 +1,1 @@
+export const STOCKS_SCREEN = 'StocksScreen';

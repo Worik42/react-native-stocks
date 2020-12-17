@@ -1,0 +1,1 @@
+export const ABOUT_APP_SCREEN = 'AboutAppScreen';
