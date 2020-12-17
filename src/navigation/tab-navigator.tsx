@@ -8,8 +8,9 @@ import {ABOUT_APP_SCREEN} from '../features/aboutApp/types';
 import AboutAppScreen from '../features/aboutApp/screens/about-app-screen';
 import {STOCKS_SCREEN} from '../features/stock/types';
 import StocksScreen from '../features/stock/screens/stocks-screen';
+import {TabParamList} from 'src/global';
 
-const Tabs = createBottomTabNavigator();
+const Tabs = createBottomTabNavigator<TabParamList>();
 
 const styles = StyleSheet.create({
   containerTab: {

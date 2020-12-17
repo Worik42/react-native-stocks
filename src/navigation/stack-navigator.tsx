@@ -9,7 +9,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const StackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator headerMode="none">
       <Stack.Screen name={TAB_ROUTE} component={TabNavigator} />
     </Stack.Navigator>
   );
