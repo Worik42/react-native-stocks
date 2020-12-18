@@ -1,9 +1,15 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {inject, observer} from 'mobx-react';
 
 import {StockData} from 'src/global';
-import StockTableView from './stock-table-view';
+import StocksTableView from './stocks-table-view';
 import {COLOR_PRIMARY} from '@common/colors';
+import {StocksStore} from '../store';
+
+type IStocksScreen = {
+  stocks: StocksStore;
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -46,10 +52,13 @@ const mockData: StockData[] = [
   },
 ];
 
-const StocksScreen: FC = () => (
-  <View style={styles.container}>
-    <StockTableView data={mockData} />
-  </View>
-);
-
+const StocksScreen: FC<IStocksScreen> = observer(({stocks}) => {
+  console.log(stocks);
+  
+  return (
+    <View style={styles.container}>
+      <StocksTableView data={mockData} />
+    </View>
+  );
+});
 export default StocksScreen;

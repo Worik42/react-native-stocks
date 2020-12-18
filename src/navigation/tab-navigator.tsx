@@ -2,13 +2,13 @@ import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {COLOR_PRIMARY, COLOR_GREY, COLOR_WHITE, COLOR_BOTTOM_NAV, COLOR_SECONDARY} from '../common/colors';
+import {COLOR_GREY, COLOR_BOTTOM_NAV, COLOR_SECONDARY} from '../common/colors';
 import {ABOUT_APP, STOCK} from '../common/strings/strings';
 import {ABOUT_APP_SCREEN} from '../features/aboutApp/types';
 import AboutAppScreen from '../features/aboutApp/screens/about-app-screen';
-import {STOCKS_SCREEN} from '../features/stock/types';
-import StocksScreen from '../features/stock/screens/stocks-screen';
 import {TabParamList} from 'src/global';
+import { STOCKS_SCREEN } from '@features/stocks/types';
+import StocksScreen from '@features/stocks/screens/stocks-screen';
 
 const Tabs = createBottomTabNavigator<TabParamList>();
 

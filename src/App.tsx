@@ -1,17 +1,15 @@
 import React, {FC} from 'react';
-import {View, StyleSheet} from 'react-native';
 import {Provider} from 'mobx-react';
-
-import RootNavigator from './navigation/root-navigator';
 import {NavigationContainerRef} from '@react-navigation/native';
 
-const styles = StyleSheet.create({});
+import {store} from './services/index';
+import RootNavigator from './navigation/root-navigator';
 
 const App: FC = () => {
   const navigator = React.useRef<NavigationContainerRef>(null);
 
   return (
-    <Provider>
+    <Provider store={store}>
       <RootNavigator navigator={navigator} />
     </Provider>
   );

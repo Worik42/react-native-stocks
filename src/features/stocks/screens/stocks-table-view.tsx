@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   columnStyle: {flexWrap: 'wrap', flex: 1},
   containerTable: {flexWrap: 'wrap', flex: 1, flexDirection: 'row'},
 });
-export const StockTableView: FC<IStockTableView> = ({
+export const StocksTableView: FC<IStockTableView> = ({
   data = [],
   isError = false,
 }) => {
@@ -47,4 +47,4 @@ export const StockTableView: FC<IStockTableView> = ({
   );
 };
 
-export default StockTableView;
+export default StocksTableView;

@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 
-import {STOCKS_SCREEN} from '@features/stock/types';
+import {STOCKS_SCREEN} from '@features/stocks/types';
 import {ABOUT_APP_SCREEN} from '../types';
 import {COLOR_PRIMARY, COLOR_WHITE} from '@common/colors';
 import {TabParamList} from 'src/global';
