@@ -18,7 +18,7 @@ type IStockCellView = {
 
 const styles = StyleSheet.create({
   container: {
-      padding: 12
+    padding: 12,
   },
   textBig: {
     fontSize: 18,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     color: COLOR_GREY,
   },
   containerText: {
-      marginTop: 5
+    marginTop: 5,
   },
 });
 export const StockCellView: FC<IStockCellView> = ({
