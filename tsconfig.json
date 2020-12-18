@@ -16,7 +16,8 @@
       "@navigation/*": ["src/navigation/*"],
       "@services": ["src/services"],
       "@services/*": ["src/services/*"],
-      "@ui/*": ["src/ui/*"]
+      "@ui/*": ["src/ui/*"],
+      "@common/*": ["src/common/*"],
     }
   },
   "exclude": ["node_modules"]
