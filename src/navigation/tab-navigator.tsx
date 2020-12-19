@@ -7,7 +7,7 @@ import {ABOUT_APP, STOCK} from '../common/strings/strings';
 import {ABOUT_APP_SCREEN} from '../features/aboutApp/types';
 import AboutAppScreen from '../features/aboutApp/screens/about-app-screen';
 import {TabParamList} from 'src/global';
-import { STOCKS_SCREEN } from '@features/stocks/types';
+import {STOCKS_SCREEN} from '@features/stocks/types';
 import StocksScreen from '@features/stocks/screens/stocks-screen';
 
 const Tabs = createBottomTabNavigator<TabParamList>();
@@ -15,13 +15,14 @@ const Tabs = createBottomTabNavigator<TabParamList>();
 const styles = StyleSheet.create({
   containerTab: {
     backgroundColor: COLOR_BOTTOM_NAV,
-    borderTopWidth: 0
+    borderTopWidth: 0,
   },
 });
 
 const TabNavigator = () => {
   return (
     <Tabs.Navigator
+      screenOptions={{unmountOnBlur: true}}
       tabBarOptions={{
         style: styles.containerTab,
       }}>

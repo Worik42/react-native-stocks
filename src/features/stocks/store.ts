@@ -1,5 +1,7 @@
-import {observable, action, computed} from 'mobx';
+import Utils from '@common/utils';
+import {makeAutoObservable} from 'mobx';
 import {StockData} from 'src/global';
+import {stockRequest} from './api';
 
 export interface IStocksStore {
   isError: boolean;
@@ -7,10 +9,21 @@ export interface IStocksStore {
 }
 
 export class StocksStore implements IStocksStore {
-  data = [];
+  data: StockData[] = [];
   isError = false;
 
-  loadStocks() {}
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  loadStocks() {
+    stockRequest()
+      .then((data) => {
+        this.isError = false;
+        this.data = Utils.parseDataStock(data);
+      })
+      .catch((error) => (this.isError = true));
+  }
 }
 
-export default new StocksStore();
+export default StocksStore;

@@ -3,7 +3,8 @@ export const stockRequest = async () => {
     const response = await fetch(
       'https://poloniex.com/public?command=returnTicker',
     );
-    console.log(response);
+    const json = await response.json();
+    return json;
   } catch (error) {
     console.log(error);
   }

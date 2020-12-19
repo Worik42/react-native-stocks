@@ -1,15 +1,14 @@
-import React, {FC} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {inject, observer} from 'mobx-react';
+import React, {FC, useEffect, useState} from 'react';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import {observer} from 'mobx-react-lite';
 
 import {StockData} from 'src/global';
 import StocksTableView from './stocks-table-view';
-import {COLOR_PRIMARY} from '@common/colors';
+import {COLOR_PRIMARY, COLOR_SECONDARY} from '@common/colors';
 import {StocksStore} from '../store';
+import {useStocksStoreContext} from '../../../../src/App';
 
-type IStocksScreen = {
-  stocks: StocksStore;
-};
+type IStocksScreen = {};
 
 const styles = StyleSheet.create({
   container: {
@@ -17,47 +16,42 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    padding: 5,
   },
 });
 
-const mockData: StockData[] = [
-  {
-    id: 0,
-    name: 'BTC_BTS',
-    highestBid: '0.00000105',
-    percentChange: '-0.06250000',
-    last: '0.00000105',
-  },
-  {
-    id: 1,
-    name: 'BTC_BTS',
-    highestBid: '0.00000105',
-    percentChange: '-0.06250000',
-    last: '0.00000105',
-  },
-  {
-    id: 2,
-    name: 'BTC_BTS',
-    highestBid: '0.00000105',
-    percentChange: '-0.06250000',
-    last: '0.00000105',
-  },
-  {
-    id: 3,
-    name: 'BTC_BTS',
-    highestBid: '0.00000105',
-    percentChange: '-0.06250000',
-    last: '0.00000105',
-  },
-];
+const INTERVAL: number = 5000;
 
-const StocksScreen: FC<IStocksScreen> = observer(({stocks}) => {
-  console.log(stocks);
-  
+const StocksScreen: FC<IStocksScreen> = observer(() => {
+  const [isLoading, setLoading] = useState(false);
+
+  const stocks = useStocksStoreContext();
+
+  useEffect(() => {
+    setLoading(true);
+    const id = setInterval(() => {
+      stocks.loadStocks();
+    }, INTERVAL);
+    return () => {
+      clearInterval(id);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (stocks.data.length !== 0) {
+      setLoading(false);
+    }
+  }, [stocks.data]);
+
   return (
     <View style={styles.container}>
-      <StocksTableView data={mockData} />
+      {isLoading && (
+        <ActivityIndicator
+          size="large"
+          animating={true}
+          color={COLOR_SECONDARY}
+        />
+      )}
+      <StocksTableView isError={stocks.isError} data={stocks.data} />
     </View>
   );
 });
