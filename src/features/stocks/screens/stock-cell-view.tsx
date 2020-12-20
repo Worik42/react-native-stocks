@@ -6,8 +6,8 @@ import {
   COLOR_WHITE,
 } from '@common/colors';
 import CellView from '@common/ui/cell-view';
-import React, {FC} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import React, {FC, useEffect, useRef} from 'react';
+import {View, StyleSheet, Text, Animated} from 'react-native';
 
 type IStockCellView = {
   title: string;
@@ -38,20 +38,43 @@ export const StockCellView: FC<IStockCellView> = ({
   highrestBig = '',
   percentChange = '',
 }) => {
+  const animated = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.timing(animated, {
+      useNativeDriver: true,
+      toValue: 1,
+      duration: 500,
+    }).start();
+  }, [title, percentChange, last, highrestBig]);
+
+  const opacity = animated.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1],
+  });
+
   return (
     <CellView>
-      <View style={styles.container}>
+      <View style={[styles.container]}>
         <View style={styles.containerText}>
-          <Text style={styles.textMedium}>{title}</Text>
+          <Animated.Text style={[styles.textMedium, {opacity}]}>
+            {title}
+          </Animated.Text>
         </View>
         <View style={styles.containerText}>
-          <Text style={styles.textBig}>{percentChange}</Text>
+          <Animated.Text style={[styles.textBig, {opacity}]}>
+            {percentChange}
+          </Animated.Text>
         </View>
         <View style={styles.containerText}>
-          <Text style={styles.textMedium}>{last}</Text>
+          <Animated.Text style={[styles.textMedium, {opacity}]}>
+            {last}
+          </Animated.Text>
         </View>
         <View style={styles.containerText}>
-          <Text style={styles.textMedium}>{highrestBig}</Text>
+          <Animated.Text style={[styles.textMedium, {opacity}]}>
+            {highrestBig}
+          </Animated.Text>
         </View>
       </View>
     </CellView>
