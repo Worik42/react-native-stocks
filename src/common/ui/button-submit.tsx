@@ -1,12 +1,13 @@
-import {COLOR_SECONDARY} from '@common/colors';
 import React, {FC} from 'react';
 import {View, StyleSheet, Text, GestureResponderEvent} from 'react-native';
+
 import Button from './button';
 
-export type IButtonSubmit = {
+type IButtonSubmit = {
   text: string;
   onPress?: (event: GestureResponderEvent) => void;
 };
+
 const styles = StyleSheet.create({
   containerText: {
     justifyContent: 'center',
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
 export const ButtonSubmit: FC<IButtonSubmit> = ({
   text = '',
   onPress = () => null,

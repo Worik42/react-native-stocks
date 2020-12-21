@@ -1,4 +1,8 @@
-export const stockRequest = async () => {
+import { StockData } from "./store";
+
+export type StocksRest = Record<string, Omit<StockData, 'name'>>;
+
+export const stockRequest = async (): Promise<StocksRest> => {
   try {
     const response = await fetch(
       'https://poloniex.com/public?command=returnTicker',
@@ -7,5 +11,8 @@ export const stockRequest = async () => {
     return json;
   } catch (error) {
     console.log(error);
+    return error
   }
 };
+
+

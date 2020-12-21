@@ -1,13 +1,10 @@
-import {COLOR_BOTTOM_NAV, COLOR_CELL, COLOR_SECONDARY} from '@common/colors';
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {
   View,
-  TouchableOpacity,
-  GestureResponderEvent,
-  ViewStyle,
   StyleSheet,
 } from 'react-native';
-import Animated from 'react-native-reanimated';
+
+import {COLOR_CELL} from '@common/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,14 +13,8 @@ const styles = StyleSheet.create({
     elevation: 20,
   },
 });
-export const CellView: FC = ({children = <View />}) => {
-  // const [show, setShow] = useState(new Animated.Value(0));
-  // Animated.timing(show, {
-  //   easing: () => {},
-  //   toValue: 1,
-  //   duration: 300,
-  // }).start();
 
+const CellView: FC = ({children = <View />}) => {
   return <View style={styles.container}>{children}</View>;
 };
 

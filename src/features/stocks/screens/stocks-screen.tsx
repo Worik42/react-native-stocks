@@ -2,11 +2,9 @@ import React, {FC, useEffect, useState} from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import {StockData} from 'src/global';
-import StocksTableView from './stocks-table-view';
 import {COLOR_PRIMARY, COLOR_SECONDARY} from '@common/colors';
-import {StocksStore} from '../store';
-import {useStocksStoreContext} from '../../../../src/App';
+import { useStocksStoreContext } from '@services';
+import StocksTableView from '../components/table-view';
 
 type IStocksScreen = {};
 
@@ -28,6 +26,8 @@ const StocksScreen: FC<IStocksScreen> = observer(() => {
 
   useEffect(() => {
     setLoading(true);
+    stocks.loadStocks();
+
     const id = setInterval(() => {
       stocks.loadStocks();
     }, INTERVAL);

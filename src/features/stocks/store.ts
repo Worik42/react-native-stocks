@@ -1,14 +1,25 @@
+import {makeAutoObservable, runInAction} from 'mobx';
+
 import Utils from '@common/utils';
-import {makeAutoObservable} from 'mobx';
-import {StockData} from 'src/global';
 import {stockRequest} from './api';
 
-export interface IStocksStore {
-  isError: boolean;
-  data: StockData[];
-}
 
-export class StocksStore implements IStocksStore {
+export type StockData = {
+  id: number;
+  name: string;
+  last: string;
+  lowestAsk?: string;
+  highestBid: string;
+  percentChange: string;
+  baseVolume?: string;
+  quoteVolume?: string;
+  isFrozen?: string;
+  high24hr?: string;
+  low24hr?: string;
+};
+
+
+export class StocksStore {
   data: StockData[] = [];
   isError = false;
 
@@ -19,10 +30,16 @@ export class StocksStore implements IStocksStore {
   loadStocks() {
     stockRequest()
       .then((data) => {
-        this.isError = false;
-        this.data = Utils.parseDataStock(data);
+        runInAction(() => {
+          this.isError = false;
+          this.data = Utils.parseDataStock(data);
+        });
       })
-      .catch((error) => (this.isError = true));
+      .catch((error) => {
+        runInAction(() => {
+          this.isError = true;
+        });
+      });
   }
 }
 

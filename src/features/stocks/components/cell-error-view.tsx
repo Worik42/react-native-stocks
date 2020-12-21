@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
-import {COLOR_ERROR, COLOR_GREY, COLOR_WHITE} from '@common/colors';
+import {COLOR_ERROR} from '@common/colors';
 import CellView from '@common/ui/cell-view';
 
 const styles = StyleSheet.create({
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const StockCellErrorView: FC = () => {
+const CellErrorView: FC = () => {
   return (
     <CellView>
       <View style={styles.container}>
@@ -24,4 +24,4 @@ const StockCellErrorView: FC = () => {
   );
 };
 
-export default StockCellErrorView;
+export default CellErrorView;

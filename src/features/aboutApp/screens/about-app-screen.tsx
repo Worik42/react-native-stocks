@@ -3,18 +3,18 @@ import {StyleSheet, Text, View} from 'react-native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 
 import {STOCKS_SCREEN} from '@features/stocks/types';
-import {ABOUT_APP_SCREEN} from '../types';
 import {COLOR_PRIMARY, COLOR_WHITE} from '@common/colors';
-import {TabParamList} from 'src/global';
-import Button from '@common/ui/button';
 import ButtonSubmit from '@common/ui/button-submit';
+import { TabParamList } from '@navigation/tab-navigator';
+import {ABOUT_APP_SCREEN} from '../types';
+
 
 type AboutAppScreenNavigationProp = BottomTabNavigationProp<
   TabParamList,
   typeof ABOUT_APP_SCREEN
 >;
 
-export type IAboutScreenProps = {
+type IAboutScreenProps = {
   navigation: AboutAppScreenNavigationProp;
 };
 
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AboutAppScreen: FC<IAboutScreenProps> = ({navigation}): JSX.Element => {
+const AboutAppScreen: FC<IAboutScreenProps> = ({navigation}) => {
   const navigateStocks = () => {
     navigation.navigate(STOCKS_SCREEN);
   };

@@ -1,10 +1,9 @@
 import React, {FC} from 'react';
+import {View, StyleSheet, ScrollView} from 'react-native';
 
-import {View, StyleSheet} from 'react-native';
-import {StockData} from 'src/global';
-import StockCellView from './stock-cell-view';
-import StockCellErrorView from './stock-cell-error-view';
-import {ScrollView} from 'react-native-gesture-handler';
+import CellView from './cell-view';
+import CellErrorView from './cell-error-view';
+import {StockData} from '../store';
 
 type IStockTableView = {
   data: StockData[];
@@ -13,18 +12,24 @@ type IStockTableView = {
 
 const styles = StyleSheet.create({
   containerCell: {
-    margin: 5,
+    padding: 5,
+    flexShrink: 0,
+    flexBasis: '33.33%',
   },
-  columnStyle: {flexWrap: 'wrap', flex: 1},
-  containerTable: {flexWrap: 'wrap', flex: 1, flexDirection: 'row'},
+  containerTable: {
+    flexWrap: 'wrap',
+    flex: 1,
+    flexDirection: 'row',
+  },
 });
+
 export const StocksTableView: FC<IStockTableView> = ({
   data = [],
   isError = false,
 }) => {
   const renderItem = (item: StockData) => (
     <View style={styles.containerCell} key={item.id}>
-      <StockCellView
+      <CellView
         highrestBig={item.highestBid}
         title={item.name}
         percentChange={item.percentChange}
@@ -38,7 +43,7 @@ export const StocksTableView: FC<IStockTableView> = ({
       <View style={styles.containerTable}>
         {isError && (
           <View style={styles.containerCell}>
-            <StockCellErrorView />
+            <CellErrorView />
           </View>
         )}
         {data.map((item) => renderItem(item))}

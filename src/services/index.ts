@@ -1,10 +1,18 @@
-import {StocksStore} from '@features/stocks/store';
+import { createContext, useContext } from 'react';
+
+import { StocksStore } from '@features/stocks/store';
 
 /**
  * configure stores mobx
  */
-const store = {
-  stocks: StocksStore,
-};
+const Context = createContext<StocksStore | null>(null);
 
-export {store};
+export const StocksStoreProvider = Context.Provider;
+
+export const useStocksStoreContext = () => {
+  const store = useContext(Context);
+  /**
+   * Говорим ts, что стор будет всегда доступен.
+   */
+  return store ?? new StocksStore();
+};

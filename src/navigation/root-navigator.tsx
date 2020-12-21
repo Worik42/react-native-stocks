@@ -6,7 +6,7 @@ import {
 
 import StackNavigator from './stack-navigator';
 
-declare interface IRootNavigator {
+type IRootNavigator = {
   navigator: React.RefObject<NavigationContainerRef>;
 }
 
